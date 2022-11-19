@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Assignment_Basic_C_Sharp_02
 {
@@ -43,9 +44,8 @@ namespace Assignment_Basic_C_Sharp_02
             return false;
         }
         
-        public double TakeNumber(string data, char condition, int pos)
+        public BigInteger TakeNumber(string data, char condition, int pos)
         {
-            double num = new double();
             string Num = "";
 
             //Console.WriteLine(condition + " " + pos);
@@ -79,17 +79,16 @@ namespace Assignment_Basic_C_Sharp_02
                     }
                     break;
             }
-            
+
             //Console.WriteLine(Num);
-            
-            num = Convert.ToDouble(Num);
-            return num;
+            BigInteger res = BigInteger.Parse(Num);
+            return res;
         }
 
         public void CalculationMethod(char condition, int position, ref string data)
         {
-            double result = 0, num1 = 0, num2 = 0;
-            string numChange = "", _equa = "";
+            BigInteger num1 = new BigInteger(), num2 = new BigInteger(), result = new BigInteger();
+            string _equa = "";
 
             switch (condition)
             {
@@ -97,21 +96,18 @@ namespace Assignment_Basic_C_Sharp_02
                     num1 = TakeNumber(data, '-', position);
                     num2 = TakeNumber(data, '+', position);
                     result = num1 + num2;
-                    numChange = result.ToString();
                     break;
 
                 case '-':
                     num1 = TakeNumber(data, '-', position);
                     num2 = TakeNumber(data, '+', position);
                     result = num1 - num2;
-                    numChange = result.ToString();
                     break;
 
                 case '*':
                     num1 = TakeNumber(data, '-', position);
                     num2 = TakeNumber(data, '+', position);
                     result = num1 * num2;
-                    numChange = result.ToString();
                     break;
 
                 case '/':
@@ -126,7 +122,6 @@ namespace Assignment_Basic_C_Sharp_02
                     }
                     
                     result = num1 / num2;
-                    numChange = result.ToString();
                     break;
             }
 
@@ -134,7 +129,7 @@ namespace Assignment_Basic_C_Sharp_02
             //Console.WriteLine(_equa);
             //Console.WriteLine(numChange);
             int pos = data.IndexOf(_equa);
-            data = data.Remove(pos, _equa.Length).Insert(pos, numChange);
+            data = data.Remove(pos, _equa.Length).Insert(pos, result.ToString());
         }
 
         public string CalculationHandler(ref string data)
