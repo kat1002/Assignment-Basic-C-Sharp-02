@@ -127,7 +127,7 @@ namespace Assignment_Basic_C_Sharp_02
 
             _equa = num1.ToString() + data[position] + num2.ToString();
             //Console.WriteLine(_equa);
-            //Console.WriteLine(numChange);
+            //Console.WriteLine(result);
             int pos = data.IndexOf(_equa);
             data = data.Remove(pos, _equa.Length).Insert(pos, result.ToString());
         }

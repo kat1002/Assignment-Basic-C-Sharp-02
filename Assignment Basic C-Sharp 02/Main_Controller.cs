@@ -16,8 +16,6 @@ namespace Assignment_Basic_C_Sharp_02
 
         public bool CheckInput(string data)
         {
-            if (data.IndexOf("**") != -1 || data.IndexOf("++") != -1 || data.IndexOf("//") != -1) return false;
-
             data = data.Trim();
             for (int index = 0; index < data.Length; ++index)
             {
@@ -27,6 +25,8 @@ namespace Assignment_Basic_C_Sharp_02
                 }
                 return false;
             }
+
+            if (data.IndexOf("**") != -1 || data.IndexOf("//") != -1) return false;
 
             return true;
         }
@@ -47,14 +47,33 @@ namespace Assignment_Basic_C_Sharp_02
                     res += ')';
                     continue;
                 }
-                res += data[index];
+                if (data[index] != ' ') res += data[index];
             }
-            
-            while(res.IndexOf("  ") != -1)
+
+            while (res.IndexOf("++") != -1)
             {
-                res.Remove(res.IndexOf("  "), 1);
+                int pos = res.IndexOf("++");
+                res = res.Remove(pos, 1);
             }
-            
+
+            while (res.IndexOf("--") != -1)
+            {
+                int pos = res.IndexOf("--");
+                res = res.Remove(pos, 2).Insert(pos,"+");
+            }
+
+            while (res.IndexOf("+-") != -1)
+            {
+                int pos = res.IndexOf("+-");
+                res = res.Remove(pos, 2).Insert(pos, "-");
+            }
+
+            while (res.IndexOf("-+") != -1)
+            {
+                int pos = res.IndexOf("-+");
+                res = res.Remove(pos, 2).Insert(pos, "-");
+            }
+
             return res;
         }
 
