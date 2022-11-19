@@ -30,6 +30,40 @@ namespace Assignment_Basic_C_Sharp_02
 
             return true;
         }
+        
+        public void operatorFormat(ref string data) 
+        {
+
+            while (data.IndexOf("++") != -1)
+            {
+                int pos = data.IndexOf("++");
+                data = data.Remove(pos, 1);
+            }
+
+            while (data.IndexOf("--") != -1)
+            {
+                int pos = data.IndexOf("--");
+                data = data.Remove(pos, 2).Insert(pos, "+");
+            }
+
+            while (data.IndexOf("+-") != -1)
+            {
+                int pos = data.IndexOf("+-");
+                data = data.Remove(pos, 2).Insert(pos, "-");
+            }
+
+            while (data.IndexOf("-+") != -1)
+            {
+                int pos = data.IndexOf("-+");
+                data = data.Remove(pos, 2).Insert(pos, "-");
+            }
+
+            while (data.IndexOf("*+") != -1)
+            {
+                int pos = data.IndexOf("*+");
+                data = data.Remove(pos + 1, 1);
+            }
+        }
         public string Format(string data)
         {
             string res = "";
@@ -50,30 +84,10 @@ namespace Assignment_Basic_C_Sharp_02
                 if (data[index] != ' ') res += data[index];
             }
 
-            while (res.IndexOf("++") != -1)
-            {
-                int pos = res.IndexOf("++");
-                res = res.Remove(pos, 1);
-            }
+            operatorFormat(ref res);
 
-            while (res.IndexOf("--") != -1)
-            {
-                int pos = res.IndexOf("--");
-                res = res.Remove(pos, 2).Insert(pos,"+");
-            }
-
-            while (res.IndexOf("+-") != -1)
-            {
-                int pos = res.IndexOf("+-");
-                res = res.Remove(pos, 2).Insert(pos, "-");
-            }
-
-            while (res.IndexOf("-+") != -1)
-            {
-                int pos = res.IndexOf("-+");
-                res = res.Remove(pos, 2).Insert(pos, "-");
-            }
-
+            Console.WriteLine(res);
+            
             return res;
         }
 

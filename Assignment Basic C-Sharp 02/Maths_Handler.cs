@@ -43,7 +43,7 @@ namespace Assignment_Basic_C_Sharp_02
 
             return false;
         }
-        
+
         public BigInteger TakeNumber(string data, char condition, int pos)
         {
             string Num = "";
@@ -54,7 +54,7 @@ namespace Assignment_Basic_C_Sharp_02
             switch (condition)
             {
                 case '-':
-                    for(int i = pos - 1; i >= 0; --i)
+                    for (int i = pos - 1; i >= 0; --i)
                     {
                         if (data[i] == '.' || isNegative(Num, data, '-', pos))
                         {
